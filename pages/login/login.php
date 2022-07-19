@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <?php
-    session_start();
-    session_destroy();
+  session_start();
+  session_destroy();
     
-require_once '../database&config/config.php';
-$cn = new mysqli (HOST, USER, PW, DB);
-$sql="SELECT about_id, app_name, address, contact, info, logo, background_image FROM tbl_about";
-$qry=$cn->prepare($sql);
-$qry->execute();
-$qry->bind_result($about_id, $app_name, $address, $contact, $info, $logo, $background_image);
-$qry->store_result();
-$qry->fetch();
+  require_once '../database&config/config.php';
+    
+  $cn = new mysqli (HOST, USER, PW, DB);
+  $sql="SELECT about_id, app_name, address, contact, info, logo, background_image FROM tbl_about";
+  $qry=$cn->prepare($sql);
+  $qry->execute();
+  $qry->bind_result($about_id, $app_name, $address, $contact, $info, $logo, $background_image);
+  $qry->store_result();
+  $qry->fetch();
 ?>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo $app_name;?></title>
-<link rel="icon" href="../uploads/<?php echo $logo;?>">
+  <title> <?php echo $app_name;?> </title>
+  <link rel="icon" href="../uploads/<?php echo $logo;?>">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
